@@ -1,10 +1,11 @@
+#   The game can be played to the consule   #
+
+
 from random import randint
 from time import sleep
 import os
 from timeit import default_timer as timer
 from math import ceil
-
-start = timer()
 
 clear_con = lambda: os.system('cls')
 
@@ -37,12 +38,6 @@ def dimension():
             continue
     clear_con()
     return n
-
-
-
-
-# def clear():
-#     print("\033[H\033[J")
 
 
 def printBoard(b):
@@ -86,26 +81,22 @@ def movePlayer(b,P,triads_before):
     while not sure:
         P.letter = input('Please enter the letter you want to place ("S" or "O"). ')
         while P.letter.isdigit():
-            # clear()
             clear_con()
             printBoard(b)
             P.letter = input('Please enter a letter ("S" or "O"). ')    
         
         P.letter = P.letter.upper()
         while P.letter != 'S' and P.letter != 'O':
-            # clear()
             clear_con()
             printBoard(b)
             P.letter = input('Please enter one of the two letters ("S" or "O"). ')
             P.letter = P.letter.upper()
         u_sure = input('Are you sure? (yes or no) ')
         while u_sure.isdigit():
-            # clear()
             clear_con()
             printBoard(b)
             u_sure = input('Are you sure?(yes or no) ')
         while u_sure.lower() != 'no' and  u_sure.lower() != 'yes' and u_sure.lower() != 'y' and u_sure.lower() != 'n':
-            # clear()
             clear_con()
             printBoard(b)
             u_sure = input('Are you sure?(yes or no) ')
@@ -117,31 +108,26 @@ def movePlayer(b,P,triads_before):
         coordinates = list()
         r = input('Enter the row of the square: ')
         while not r.isdigit():
-            # clear()
             clear_con()
             printBoard(b)
             r = input('Enter the row of the square: ')
         r = int(r)
         while r < 1 or r > n:
-            # clear()
             clear_con()
             printBoard(b)
             r = input('Enter the row of the square: ')
             while not r.isdigit():
-                # clear()
                 clear_con()
                 printBoard(b)
                 r = input('Enter the row of the square: ')
             r = int(r)
         c = input('Enter the column of the square: ')
         while not c.isdigit():
-            # clear()
             clear_con()
             printBoard(b)
             c = input('Enter the column of the square: ')
         c = int(c)
         while c < 1 or c > n:
-            # clear()
             clear_con()
             printBoard(b)
             c = input('Enter the column of the square: ')
@@ -270,7 +256,7 @@ def moveComp(comp,b,triads_before,dif):
             for _ in range((n-1)*(n-2)):
                 middle.append(middle[-len(middle)]+n)
             
-                # Diagonally        
+            # Diagonally        
             for i in range(len(middle)):
                 
                 if isEmpty(b, middle[i]):
@@ -351,7 +337,7 @@ def score_print(p1,p2):
     # Inputs:
     # p1 -> Player
     # p2 -> Player
-
+    #
     # Prints the score
     print(f'-----Score-----\n{p1.name}: {p1.score}\n{p2.name}: {p2.score}\n')
 
@@ -369,7 +355,6 @@ def difficulty_dicision():
                 if dif_dicision < 1 or dif_dicision > 2: raise Exception
                 break
             except:
-                # clear()
                 clear_con()
                 continue
 
@@ -392,23 +377,19 @@ if __name__ == '__main__':
     p.name = p.name.title()
     comp.name = 'CPU'
     clear_con()
-    # clear()
     dif = difficulty_dicision()
     clear_con()
-    # clear()
     printBoard(board)    
     game_on = True
     triads_before = 0   
     while game_on:
         movePlayer(board,p,triads_before)
-        # clear()
         clear_con()
         printBoard(board)
         triads_before = p.score + comp.score
         score_print(p,comp)
         if boardIsFull(board): break
         moveComp(comp,board,triads_before,difficulty.get(dif).lower())
-        # clear()
         clear_con()
         printBoard(board)
         triads_before = p.score + comp.score
@@ -419,4 +400,3 @@ if __name__ == '__main__':
     
 
 print(f'You were playing {ceil(timer() - start + 1)} seconds')
-# print('You were playing','%.0f' % (timer() - start + 1), 'seconds')
