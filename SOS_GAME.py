@@ -301,7 +301,7 @@ def isEmpty(b,pos):
     # b -> list
     # pos -> int
     #
-    # Returns True if the board is empty, else returns False
+    # Returns True if the position pos on the board is empty, else returns False
     return b[pos] == ' '
 
 
