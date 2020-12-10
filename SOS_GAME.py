@@ -1,4 +1,4 @@
-#   The game can be played to the consule   #
+#   The game can be played to the console   #
 
 
 from random import randint
